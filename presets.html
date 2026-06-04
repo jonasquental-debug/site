@@ -6,268 +6,50 @@
 <title>Presets — Jonas Quental</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { padding: calc(72px + 80px) 48px 80px; border-bottom: 1px solid rgba(0,0,0,0.08); max-width: 720px; }
+    .page-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #b0afa8; margin-bottom: 24px; font-family: 'DM Sans', sans-serif; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 28px; }
+    .page-hero h1 em { font-style: italic; }
+    .page-sub { font-size: 15px; font-weight: 300; color: #6b6b65; line-height: 1.8; max-width: 480px; font-family: 'DM Sans', sans-serif; }
+    .presets-grid { padding: 60px 48px 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,0,0,0.08); }
+    .preset-card { background: #f5f4f0; padding: 40px 36px; display: flex; flex-direction: column; gap: 20px; }
+    .preset-thumb { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; }
+    .preset-card:nth-child(1) .preset-thumb { background: linear-gradient(135deg, #d4cfc6, #b8b0a4); }
+    .preset-card:nth-child(2) .preset-thumb { background: linear-gradient(135deg, #c8d4d8, #a4b8c0); }
+    .preset-card:nth-child(3) .preset-thumb { background: linear-gradient(135deg, #d8cfc0, #c0a88c); }
+    .preset-thumb-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,24,0.3); font-family: 'DM Sans', sans-serif; }
+    .coming-soon-badge { position: absolute; top: 12px; right: 12px; background: #1a1a18; color: #f5f4f0; font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 10px; font-family: 'DM Sans', sans-serif; }
+    .preset-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; font-style: italic; }
+    .preset-desc { font-size: 13px; font-weight: 300; color: #6b6b65; line-height: 1.7; flex: 1; font-family: 'DM Sans', sans-serif; }
+    .preset-price { font-size: 13px; color: #888; font-family: 'DM Sans', sans-serif; }
+    .preset-btn { width: 100%; padding: 14px; background: none; border: 1px solid rgba(0,0,0,0.1); color: #b0afa8; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: not-allowed; font-family: 'DM Sans', sans-serif; }
+    .notify-section { padding: 64px 48px 80px; border-top: 1px solid rgba(0,0,0,0.08); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .notify-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 16px; }
+    .notify-section p { font-size: 14px; font-weight: 300; color: #6b6b65; line-height: 1.8; max-width: 380px; font-family: 'DM Sans', sans-serif; }
+    .notify-label { display: block; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; }
+    .notify-input { background: none; border: none; border-bottom: 1px solid rgba(0,0,0,0.1); color: #1a1a18; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; padding: 10px 0; outline: none; width: 100%; margin-bottom: 28px; transition: border-color 0.2s; }
+    .notify-input:focus { border-bottom-color: #1a1a18; }
+    .notify-input::placeholder { color: #b0afa8; }
+    @media (max-width: 900px) { .presets-grid { grid-template-columns: 1fr; padding: 40px 24px; } .notify-section { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 64px; } .page-hero { padding: 120px 24px 48px; } }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f8f7f4; --fg: #1a1a18; --fg-muted: #6b6b65; --fg-faint: #b0afa8;
-    --border: rgba(26,26,24,0.1);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-    --nav-h: 72px;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--bg); color: var(--fg); font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: var(--bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 100; }
-  .nav-logo { font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a { color: var(--fg-muted); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--fg); }
-
-  /* HERO */
-  .page-hero {
-    padding-top: calc(var(--nav-h) + 80px);
-    padding-bottom: 80px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-bottom: 1px solid var(--border);
-    max-width: 720px;
-  }
-
-  .page-eyebrow {
-    font-size: 11px;
-    font-family: var(--sans);
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--fg-faint);
-    margin-bottom: 24px;
-  }
-
-  .page-title {
-    font-family: var(--serif);
-    font-size: clamp(48px, 7vw, 88px);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin-bottom: 28px;
-  }
-
-  .page-sub {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--fg-muted);
-    line-height: 1.8;
-    max-width: 480px;
-  }
-
-  /* COMING SOON GRID */
-  .presets-grid {
-    padding: 60px 40px 80px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-  }
-
-  .preset-card {
-    background: var(--bg);
-    padding: 40px 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-  }
-
-  .preset-thumb {
-    width: 100%;
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #e8e6e0, #d4d1c8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* Unique gradient per card to suggest different color grades */
-  .preset-card:nth-child(1) .preset-thumb { background: linear-gradient(135deg, #d4cfc6, #b8b0a4); }
-  .preset-card:nth-child(2) .preset-thumb { background: linear-gradient(135deg, #c8d4d8, #a4b8c0); }
-  .preset-card:nth-child(3) .preset-thumb { background: linear-gradient(135deg, #d8cfc0, #c0a88c); }
-
-  .preset-thumb-label {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(26,26,24,0.35);
-  }
-
-  .coming-soon-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--fg);
-    color: var(--bg);
-    font-family: var(--sans);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 5px 10px;
-  }
-
-  .preset-name {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: -0.01em;
-  }
-
-  .preset-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--fg-muted);
-    line-height: 1.7;
-    flex: 1;
-  }
-
-  .preset-price {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--fg-faint);
-    letter-spacing: 0.04em;
-  }
-
-  .preset-btn {
-    width: 100%;
-    padding: 14px;
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--fg-faint);
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: not-allowed;
-    transition: all 0.2s;
-    margin-top: 4px;
-  }
-
-  /* NOTIFY SECTION */
-  .notify-section {
-    padding: 64px 40px 80px;
-    border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .notify-left h2 {
-    font-family: var(--serif);
-    font-size: clamp(28px, 3vw, 44px);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 16px;
-  }
-
-  .notify-left p {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--fg-muted);
-    line-height: 1.8;
-    max-width: 380px;
-  }
-
-  .notify-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .notify-label {
-    font-size: 10px;
-    font-family: var(--sans);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fg-faint);
-    margin-bottom: 8px;
-  }
-
-  .notify-input {
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    color: var(--fg);
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 300;
-    padding: 10px 0;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-    margin-bottom: 28px;
-  }
-
-  .notify-input:focus { border-bottom-color: var(--fg); }
-  .notify-input::placeholder { color: var(--fg-faint); }
-
-  .notify-btn {
-    background: var(--fg);
-    color: var(--bg);
-    border: none;
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 16px 32px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    align-self: flex-start;
-  }
-
-  .notify-btn:hover { opacity: 0.75; }
-
-  /* FOOTER */
-  footer { padding: 32px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-size: 12px; font-family: var(--sans); font-weight: 300; color: var(--fg-faint); }
-  .footer-links { display: flex; gap: 24px; }
-  .footer-links a { font-size: 11px; font-family: var(--sans); font-weight: 500; color: var(--fg-faint); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--fg); }
-
-  /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; } .nav-links { gap: 20px; }
-    .page-hero { padding: calc(var(--nav-h) + 48px) 20px 48px; }
-    .presets-grid { grid-template-columns: 1fr; padding: 40px 20px; }
-    .notify-section { grid-template-columns: 1fr; gap: 40px; padding: 48px 20px 64px; }
-    footer { padding: 24px 20px; flex-direction: column; gap: 16px; }
-  }
-</style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">Jonas Quental</a>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">JQ</a>
   <ul class="nav-links">
-    <li><a href="index.html" class="nav-link">Home</a></li>
-    <li><a href="landscape.html" class="nav-link">Landscape</a></li>
-    <li><a href="street.html" class="nav-link">Street</a></li>
-    <li><a href="presets.html" class="nav-link active">Presets</a></li>
-    <li><a href="index.html#about" class="nav-link">About</a></li>
-    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    <li><a href="landscape.html">Landscape</a></li>
+    <li><a href="street.html">Street</a></li>
+    <li><a href="presets.html" class="active">Presets</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -330,13 +112,7 @@
   </div>
 </div>
 
-<footer>
-  <span class="footer-copy">© 2026 Jonas Quental — All rights reserved</span>
-  <div class="footer-links">
-    <a href="https://instagram.com/jonasqshots" target="_blank">Instagram</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-</footer>
+<footer class="footer"><span>© 2026 Jonas Quental — All rights reserved</span></footer>
 
 <script>
   const reveals = document.querySelectorAll('.reveal');
@@ -363,5 +139,6 @@
     setTimeout(() => { btn.textContent = 'Notify me'; btn.style.background = 'var(--fg)'; e.target.reset(); }, 3000);
   }
 </script>
+<script src="script.js"></script>
 </body>
 </html>

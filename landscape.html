@@ -1,389 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landscape — Jonas Quental</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #f8f7f4;
-    --fg: #1a1a18;
-    --fg-muted: #6b6b65;
-    --fg-faint: #b0afa8;
-    --border: rgba(26,26,24,0.1);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-    --nav-h: 72px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--fg);
-    font-size: 14px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: var(--nav-h);
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    z-index: 100;
-  }
-
-  .nav-logo {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--fg);
-    text-decoration: none;
-  }
-
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-
-  .nav-links a {
-    color: var(--fg-muted);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover, .nav-links a.active { color: var(--fg); }
-
-  /* ── HEADER ── */
-  .page-header {
-    padding-top: calc(var(--nav-h) + 64px);
-    padding-bottom: 48px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-
-  .page-title {
-    font-family: var(--serif);
-    font-size: clamp(48px, 7vw, 96px);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-
-  .page-meta {
-    font-size: 12px;
-    color: var(--fg-faint);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* ── MASONRY GRID ── */
-  .gallery {
-    padding: 40px;
-    columns: 3;
-    column-gap: 12px;
-  }
-
-  .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 12px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-
-  .gallery-item:hover img { transform: scale(1.02); }
-
-  .gallery-item-info {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 32px 20px 18px;
-    background: linear-gradient(transparent, rgba(26,26,24,0.55));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .gallery-item:hover .gallery-item-info { opacity: 1; }
-
-  .item-title {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 300;
-    color: #f8f7f4;
-    display: block;
-  }
-
-  .item-meta {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(248,247,244,0.65);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 32px 40px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-  }
-
-  .footer-copy {
-    font-size: 12px;
-    font-family: var(--sans);
-    font-weight: 300;
-    color: var(--fg-faint);
-  }
-
-  .footer-links { display: flex; gap: 24px; }
-
-  .footer-links a {
-    font-size: 11px;
-    font-family: var(--sans);
-    font-weight: 500;
-    color: var(--fg-faint);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--fg); }
-
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(248,247,244,0.97);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .lightbox.open { display: flex; }
-
-  .lightbox-close {
-    position: fixed;
-    top: 32px; right: 40px;
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: var(--fg-muted);
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s;
-    font-family: var(--sans);
-    font-weight: 300;
-  }
-
-  .lightbox-close:hover { color: var(--fg); }
-
-  #lightbox-img {
-    max-width: 88vw;
-    max-height: 82vh;
-    object-fit: contain;
-  }
-
-  .lightbox-meta {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--fg-muted);
-    font-style: italic;
-  }
-
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── MOBILE ── */
-  @media (max-width: 900px) {
-    .gallery { columns: 2; padding: 20px; }
-    .page-header { padding: calc(var(--nav-h) + 40px) 20px 32px; flex-direction: column; gap: 8px; }
-    nav { padding: 0 20px; }
-    .nav-links { gap: 20px; }
-    footer { padding: 24px 20px; flex-direction: column; gap: 16px; }
-  }
-
-  @media (max-width: 560px) {
-    .gallery { columns: 1; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landscape — Jonas Quental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">Jonas Quental</a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="nav-link">Home</a></li>
-    <li><a href="landscape.html" class="nav-link active">Landscape</a></li>
-    <li><a href="street.html" class="nav-link">Street</a></li>
-    <li><a href="presets.html" class="nav-link">Presets</a></li>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">JQ</a>
+    <ul class="nav-links">
+      <li><a href="landscape.html" class="active">Landscape</a></li>
+      <li><a href="street.html">Street</a></li>
+      <li><a href="presets.html">Presets</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <li><a href="index.html#about" class="nav-link">About</a></li>
-    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-  </ul>
-</nav>
+  <div class="page-header">
+    <h1 class="page-title">Landscape</h1>
+    <span class="page-meta">9 photographs</span>
+  </div>
 
-<div class="page-header">
-  <h1 class="page-title">Landscape</h1>
-  <span class="page-meta">9 photographs</span>
-</div>
-
-<div class="gallery">
-
-  <div class="gallery-item reveal" onclick="openLightbox('Monument Valley', 'photos/monument-valley.jpg', 'USA · 2026')">
-    <img src="photos/monument-valley.jpg" alt="Monument Valley" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Monument Valley</span>
-      <span class="item-meta">USA · 2026</span>
+  <div class="gallery">
+    <div class="gallery-item" onclick="openLightbox('Monument Valley', 'photos/monument-valley.jpg', 'USA · 2026')">
+      <img src="photos/monument-valley.jpg" alt="Monument Valley" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Monument Valley</span><span class="item-meta">USA · 2026</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Big Ben, Blue Hour', 'photos/bigben.jpg', 'London · 2026')">
+      <img src="photos/bigben.jpg" alt="Big Ben at blue hour" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Big Ben, Blue Hour</span><span class="item-meta">London · 2026</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Asakusa', 'photos/tokyo-temple.jpg', 'Tokyo · 2025')">
+      <img src="photos/tokyo-temple.jpg" alt="Asakusa pagoda" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Asakusa</span><span class="item-meta">Tokyo · 2025</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Pacific Coast', 'photos/rock-birds.jpg', 'California · 2026')">
+      <img src="photos/rock-birds.jpg" alt="Rock with birds" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Pacific Coast</span><span class="item-meta">California · 2026</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Alone at Sea', 'photos/sailboat.jpg', 'Brittany · 2025')">
+      <img src="photos/sailboat.jpg" alt="Sailboat" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Alone at Sea</span><span class="item-meta">Brittany · 2025</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Dolphins', 'photos/dolphins.jpg', 'Atlantic · 2025')">
+      <img src="photos/dolphins.jpg" alt="Dolphins in the ocean" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Dolphins</span><span class="item-meta">Atlantic · 2025</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Kamakura Beach', 'photos/kamakura-beach.jpg', 'Japan · 2025')">
+      <img src="photos/kamakura-beach.jpg" alt="Kamakura beach" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Kamakura Beach</span><span class="item-meta">Japan · 2025</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Yosemite', 'photos/yosemite.jpg', 'California · 2026')">
+      <img src="photos/yosemite.jpg" alt="Yosemite valley" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Yosemite</span><span class="item-meta">California · 2026</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('Sakura', 'photos/sakura.jpg', 'Japan · 2025')">
+      <img src="photos/sakura.jpg" alt="Cherry blossoms" loading="lazy">
+      <div class="gallery-item-info"><span class="item-title">Sakura</span><span class="item-meta">Japan · 2025</span></div>
     </div>
   </div>
 
-  <div class="gallery-item reveal" onclick="openLightbox('Big Ben, Blue Hour', 'photos/bigben.jpg', 'London · 2026')">
-    <img src="photos/bigben.jpg" alt="Big Ben at blue hour" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Big Ben, Blue Hour</span>
-      <span class="item-meta">London · 2026</span>
-    </div>
+  <footer class="footer">
+    <span>© 2026 Jonas Quental — All rights reserved</span>
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-meta" id="lightbox-meta"></p>
   </div>
 
-  <div class="gallery-item reveal" onclick="openLightbox('Asakusa', 'photos/tokyo-temple.jpg', 'Tokyo · 2025')">
-    <img src="photos/tokyo-temple.jpg" alt="Asakusa pagoda" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Asakusa</span>
-      <span class="item-meta">Tokyo · 2025</span>
-    </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Pacific Coast', 'photos/rock-birds.jpg', 'California · 2026')">
-    <img src="photos/rock-birds.jpg" alt="Rock with birds" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Pacific Coast</span>
-      <span class="item-meta">California · 2026</span>
-    </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Alone at Sea', 'photos/sailboat.jpg', 'Brittany · 2025')">
-    <img src="photos/sailboat.jpg" alt="Sailboat" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Alone at Sea</span>
-      <span class="item-meta">Brittany · 2025</span>
-    </div>
-  </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Dolphins', 'photos/dolphins.jpg', 'Atlantic · 2025')">
-    <img src="photos/dolphins.jpg" alt="Dolphins in the ocean" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Dolphins</span>
-      <span class="item-meta">Atlantic · 2025</span>
-    </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Kamakura Beach', 'photos/kamakura-beach.jpg', 'Japan · 2025')">
-    <img src="photos/kamakura-beach.jpg" alt="Kamakura beach at sunset" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Kamakura Beach</span>
-      <span class="item-meta">Japan · 2025</span>
-    </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Yosemite', 'photos/yosemite.jpg', 'Yosemite · 2026')">
-    <img src="photos/yosemite.jpg" alt="Yosemite valley" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Yosemite</span>
-      <span class="item-meta">Yosemite · 2026</span>
-    </div>
-  </div>
-
-  <div class="gallery-item reveal" onclick="openLightbox('Sakura', 'photos/sakura.jpg', 'Japan · 2025')">
-    <img src="photos/sakura.jpg" alt="Cherry blossoms" loading="lazy">
-    <div class="gallery-item-info">
-      <span class="item-title">Sakura</span>
-      <span class="item-meta">Japan · 2025</span>
-    </div>
-  </div>
-
-</div>
-
-<footer>
-  <span class="footer-copy">© 2026 Jonas Quental — All rights reserved</span>
-  <div class="footer-links">
-    <a href="https://instagram.com/jonasqshots" target="_blank">Instagram</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-</footer>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <img id="lightbox-img" src="" alt="">
-  <p class="lightbox-meta" id="lightbox-meta"></p>
-</div>
-
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(r => observer.observe(r));
-
-  function openLightbox(title, src, meta) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox-img').alt = title;
-    document.getElementById('lightbox-meta').textContent = title + ' — ' + meta;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-</script>
+  <script src="script.js"></script>
+  <script>
+    function openLightbox(title, src, meta) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-img').alt = title;
+      document.getElementById('lightbox-meta').textContent = title + ' — ' + meta;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
 </body>
 </html>
