@@ -128,19 +128,24 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 320px;
   gap: 12px;
 }
 
 .grid-item {
   overflow: hidden;
   background: #ddd;
+  position: relative;
 }
 
-.grid-item.tall { grid-row: span 2; }
+/* default aspect ratio */
+.grid-item::before { content: ''; display: block; padding-top: 75%; }
+.grid-item.tall::before { padding-top: 150%; }
 .grid-item.wide { grid-column: span 2; }
+.grid-item.wide::before { padding-top: 50%; }
 
 .grid-item img {
+  position: absolute;
+  inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease, filter 0.4s ease;
