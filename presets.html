@@ -28,7 +28,9 @@
     .preset-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; font-style: italic; }
     .preset-desc { font-size: 13px; font-weight: 300; color: #6b6b65; line-height: 1.7; flex: 1; font-family: 'DM Sans', sans-serif; }
     .preset-price { font-size: 13px; color: #888; font-family: 'DM Sans', sans-serif; }
-    .preset-btn { width: 100%; padding: 14px; background: none; border: 1px solid rgba(0,0,0,0.1); color: #b0afa8; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: not-allowed; font-family: 'DM Sans', sans-serif; }
+    .preset-btn { width: 100%; padding: 14px; background: none; border: 1px solid rgba(0,0,0,0.1); color: #b0afa8; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: not-allowed; font-family: 'DM Sans', sans-serif; text-align: center; text-decoration: none; display: block; box-sizing: border-box; transition: all 0.2s; }
+    .preset-btn-live { background: #1a1a18; border-color: #1a1a18; color: #f5f4f0; cursor: pointer; }
+    .preset-btn-live:hover { opacity: 0.8; }
     .notify-section { padding: 64px 48px 80px; border-top: 1px solid rgba(0,0,0,0.08); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .notify-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 400; font-style: italic; line-height: 1.2; margin-bottom: 16px; }
     .notify-section p { font-size: 14px; font-weight: 300; color: #6b6b65; line-height: 1.8; max-width: 380px; font-family: 'DM Sans', sans-serif; }
@@ -85,12 +87,11 @@
   <div class="preset-card reveal">
     <div class="preset-thumb" style="padding:0;overflow:hidden;">
       <img src="photos/openhorizonmockup.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" alt="Open Horizon">
-      <span class="coming-soon-badge">Soon</span>
     </div>
     <span class="preset-name">Open Horizon</span>
     <p class="preset-desc">Wide, airy, slightly desaturated. Made for landscape and seascape photography where the sky does the work.</p>
     <span class="preset-price">€18</span>
-    <button class="preset-btn" disabled>Not available yet</button>
+    <a href="https://jonasqshots.gumroad.com/l/openhorizon" target="_blank" class="preset-btn preset-btn-live">Buy now</a>
   </div>
 
   <div class="preset-card reveal">
