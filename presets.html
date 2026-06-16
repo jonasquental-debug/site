@@ -105,22 +105,6 @@
 
 </div>
 
-<div class="notify-section">
-  <div class="notify-left reveal">
-    <h2>Get notified<br><em>at launch.</em></h2>
-    <p>Leave your email and you'll be the first to know when the presets drop — along with a launch discount.</p>
-  </div>
-  <div class="notify-right reveal">
-    <form class="notify-form" onsubmit="handleNotify(event)">
-      <label class="notify-label" for="notify-email">Your email</label>
-      <input class="notify-input" id="notify-email" type="email" placeholder="you@email.com" required>
-      <label class="notify-label" for="notify-name">First name <span style="color:var(--fg-faint);font-weight:300;">(optional)</span></label>
-      <input class="notify-input" id="notify-name" type="text" placeholder="Your name">
-      <button type="submit" class="notify-btn">Notify me</button>
-    </form>
-  </div>
-</div>
-
 <footer class="footer"><span>© 2026 Jonas Quental — All rights reserved</span></footer>
 
 <script>
@@ -140,13 +124,6 @@
     setTimeout(() => el.classList.add('visible'), 150);
   });
 
-  function handleNotify(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.notify-btn');
-    btn.textContent = 'You\'re on the list ✓';
-    btn.style.background = '#4a7c59';
-    setTimeout(() => { btn.textContent = 'Notify me'; btn.style.background = 'var(--fg)'; e.target.reset(); }, 3000);
-  }
 </script>
 <script src="script.js"></script>
   <script>
